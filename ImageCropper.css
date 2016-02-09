@@ -1,0 +1,17 @@
+/*
+ * ImageCropper.css
+ * https://github.com/gregallensworth/ImageCropper
+ */
+
+div.imageCropperWrapper {
+}
+div.imageCropperWrapper div.imageCropperCanvas {
+    border:1px solid #CCCCCC;
+}
+div.imageCropperWrapper div.imageCropperButtons {
+    text-align:center;
+}
+div.imageCropperWrapper div.imageCropperButtons input[type="button"] {
+}
+img.imageCropperThumbnail {
+}
