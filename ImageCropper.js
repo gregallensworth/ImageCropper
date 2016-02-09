@@ -36,6 +36,7 @@ jQuery.fn.ImageCropper = function(options) {
     var imageInProgress = new Image();
     imageInProgress.onload = function() {
         $wrapper.show();
+        $target_thumb.hide();
         zoomRatio = 1.0;
         refreshBackground();
     };
