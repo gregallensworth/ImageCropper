@@ -11,7 +11,9 @@ jQuery.fn.ImageCropper = function(options) {
         thumbWidth: 1024/4,                     // width of the thumbnail rendition to show the results; default is 1/4 the width
         thumbHeight: 768/4,                     // height of the thumbnail rendition to show the results; default is 1/4 the height
         fieldName: $(this).prop('name'),        // name of the input[type="hidden"] to hold the output; default is same as the file input
-        clearFileInput: true                    // empty the file input after we have a cropped version? defaults to true
+        clearFileInput: true,                   // empty the file input after we have a cropped version? defaults to true
+        onImageLoaded: function () {},          // callback function when an image is loaded into the cropper tool
+        onImageCropped: function () {}          // callback function when an image is cropped and done
     }, options);
 
     // a reference to our own file input
@@ -36,8 +38,12 @@ jQuery.fn.ImageCropper = function(options) {
     var imageInProgress = new Image();
     imageInProgress.onload = function() {
         $wrapper.show();
+        $target_thumb.hide();
         zoomRatio = 1.0;
         refreshBackground();
+        setTimeout(function () {
+            options.onImageLoaded(imageInProgress, $canvas, $fileinput);
+        },1);
     };
 
     // event handler: when this file input gets a file, kick off the file reader and get moving
@@ -131,6 +137,11 @@ jQuery.fn.ImageCropper = function(options) {
         $target_input.val( base64.replace('data:image/jpeg;base64,', '') );
         $wrapper.hide();
         if (options.clearFileInput) $fileinput.val('');
+
+        // fire the optional callback
+        setTimeout(function () {
+            options.onImageCropped(imageInProgress, $target_input, $fileinput);
+        },1);
     };
 
 };
