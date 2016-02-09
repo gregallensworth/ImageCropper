@@ -21,25 +21,63 @@ $('input[type="file"][name="thumbimage"]').ImageCropper({
 
 * Handling the base64-encoded image server-side, is up to you. See below for some ideas.
 
-# Options and API
+# Options And Callbacks
 
-*width*
-The width of the cropping panel, and therefore of the final cropped image. Defaults to *1024*.
+* **width**
 
-*height*
-The height of the cropping panel, and therefore of the final cropped image. Defaults to *768*.
+Integer; defaults to **1024**.
 
-*thumbWidth*
-The width of the thumbnail, so the user can see their results (albeit downscaled). Defaults to 1/4 of the width.
+The width of the cropping panel, and therefore of the final cropped image.
 
-*thumbHeight*
-The height of the thumbnail, so the user can see their results (albeit downscaled). Defaults to 1/4 of the height.
+* **height**
 
-*fieldName*
-The *name* of the hidden-input field that will be created. Defaults to the same as the file-input, so as to effectively replace the file upload with the base64 string. Changing this to something else could make sense, if you want to keep both the original image as a file upload, and also the cropped version.
+Integer; defaults to **768**.
 
-*clearFileInput*
-Clear the file-input when a crop is done? Defaults to *true*, which effectively disables the file upload from happening, on the assumption that you prefer the cropped base64 version. If you do want to keep the uploaded file as well as the base64-encoded string, set this to *false* and set *fieldName* as well.
+The height of the cropping panel, and therefore of the final cropped image.
+
+* **thumbWidth**
+
+Integer; defaults to 1/4 of width.
+
+The width of the thumbnail, so the user can see their results (albeit downscaled).
+
+* **thumbHeight**
+
+Integer; defaults to 1/4 of height.
+
+The height of the thumbnail, so the user can see their results (albeit downscaled).
+
+* **fieldName**
+
+Text; defaults to same as the name of the file input.
+
+The **name** of the hidden-input field that will be created. Changing this to something else could make sense, if you want to keep both the original image as a file upload, and also the cropped version as base64 text.
+
+* **clearFileInput**
+
+Boolean; defaults to **true**
+
+Clear the file-input when a crop is done? If true, this effectively disables the file upload from happening because the file input is cleared. This is typically convenient, on the assumption that you prefer the cropped base64 version. If you do want to keep the uploaded file as well as the base64-encoded string, set this to **false** and set **fieldName** as well.
+
+* **onImageLoaded**
+
+Function; defaults to nothing
+
+An optional callback function after an image has been loaded into the cropper. Params are as follows:
+
+```
+onImageLoaded: function (rawimg, $cropcanvas, $fileinput)
+```
+
+* **onImageCropped**
+
+Function; defaults to nothing
+
+An optional callback function after an image has been cropped and finished. Params are as follows:
+
+```
+onImageCropped: function (rawimg, $hiddeninput, $fileinput)
+```
 
 # Credits and Origin
 
