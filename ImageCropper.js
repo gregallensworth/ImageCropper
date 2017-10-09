@@ -13,7 +13,10 @@ jQuery.fn.ImageCropper = function(options) {
         fieldName: $(this).prop('name'),        // name of the input[type="hidden"] to hold the output; default is same as the file input
         clearFileInput: true,                   // empty the file input after we have a cropped version? defaults to true
         onImageLoaded: function () {},          // callback function when an image is loaded into the cropper tool
-        onImageCropped: function () {}          // callback function when an image is cropped and done
+        onImageCropped: function () {},         // callback function when an image is cropped and done
+        zoomInText: "+",                        // button text for Zoom-In button (HTML OK)
+        zoomOutText: "-",                       // button text for Zoom-Out button (HTML OK)
+        goText: "Save &amp; Crop",              // button text for Crop-and-Save button (HTML OK)
     }, options);
 
     // a reference to our own file input
@@ -25,13 +28,13 @@ jQuery.fn.ImageCropper = function(options) {
     var $target_input = $('<input type="hidden" />').prop('name',options.fieldName).val('').appendTo( $fileinput.parent() );
     
     // create the cropper panel and the buttons, inside a wrapper to make them look good
-    var $wrapper = $('<div></div>').addClass('imageCropperWrapper').appendTo( $fileinput.parent() ).width(options.width).hide();
-    var $canvas  = $('<div></div>').addClass('imageCropperCanvas').appendTo( $wrapper ).width(options.width).height(options.height);
-    var $buttons = $('<div></div>').addClass('imageCropperButtons').appendTo( $wrapper );
-    var $btnIn   = $('<input type="button" value="+" />').appendTo( $buttons ).click(zoomIn);
-    var $btnCrop = $('<input type="button" value="Crop & Save" />').appendTo( $buttons ).click(performCrop);
-    var $btnOut  = $('<input type="button" value="-" />').appendTo( $buttons ).click(zoomOut);
-    
+    var $wrapper = $('<div></div>').addClass('imageCropperWrapper').appendTo($fileinput.parent()).width(options.width).hide();
+    var $canvas  = $('<div></div>').addClass('imageCropperCanvas').appendTo($wrapper).width(options.width).height(options.height);
+    var $buttons = $('<div></div>').addClass('imageCropperButtons').appendTo($wrapper);
+    var $btnIn   = $('<button class="imageCropperButtons-zoomIn"></button>').html(options.zoomInText).appendTo($buttons).click(zoomIn);
+    var $btnCrop = $('<button class="imageCropperButtons-performCrop"></button>').html(options.goText).appendTo($buttons).click(performCrop);
+    var $btnOut  = $('<button class="imageCropperButtons-zoomOut">-</button>').html(options.zoomOutText).appendTo($buttons).click(zoomOut);
+
     // create a new, blank Image element with a onload handler to trigger the refreshBackgroudn() when it receives content
     // this will in fact have its 'src' assigned in the file input's change-event handler
     var zoomRatio = 1.0;
@@ -143,5 +146,4 @@ jQuery.fn.ImageCropper = function(options) {
             options.onImageCropped(imageInProgress, $target_input, $fileinput);
         },1);
     };
-
 };

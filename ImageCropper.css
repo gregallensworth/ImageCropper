@@ -3,15 +3,40 @@
  * https://github.com/gregallensworth/ImageCropper
  */
 
+/*
+ * a wrapper of the buttons, canvas, etc.
+ */
 div.imageCropperWrapper {
 }
+
+/*
+ * the "thumbnail of their cropped image"canvas" they use for zooming and cropping
+ */
 div.imageCropperWrapper div.imageCropperCanvas {
     border:1px solid #CCCCCC;
 }
+
+/*
+ * the thumbnail of their cropped image
+ */
+img.imageCropperThumbnail {
+    border:1px solid silver;
+}
+
+/*
+ * the button bar and individual buttons
+ */
 div.imageCropperWrapper div.imageCropperButtons {
     text-align:center;
 }
-div.imageCropperWrapper div.imageCropperButtons input[type="button"] {
+div.imageCropperWrapper div.imageCropperButtons button {
 }
-img.imageCropperThumbnail {
+div.imageCropperWrapper div.imageCropperButtons button.imageCropperButtons-zoomIn {
+}
+div.imageCropperWrapper div.imageCropperButtons button.imageCropperButtons-zoomOut {
+}
+div.imageCropperWrapper div.imageCropperButtons button.imageCropperButtons-performCrop {
+}
+div.imageCropperWrapper div.imageCropperButtons button.imageCropperButtons-cancelCrop {
+    margin-left: 3em;
 }
