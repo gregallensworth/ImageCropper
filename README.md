@@ -56,6 +56,12 @@ onImageLoaded: function (rawimg, $cropcanvas, $fileinput)
 onImageCropped: function (rawimg, $hiddeninput, $fileinput)
 ```
 
+* **onImageCancel** -- An optional callback function after an image crop has been cancelled. Params are as follows:
+
+```
+onImageCancel: function (rawimg, $hiddeninput, $fileinput)
+```
+
 * **zoomInText** -- Optional, text for the *Zoom In* button.
   * Text and HTML are acceptable. Try FontAwesome or Glyphicons.
 
