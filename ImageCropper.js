@@ -14,9 +14,11 @@ jQuery.fn.ImageCropper = function(options) {
         clearFileInput: true,                   // empty the file input after we have a cropped version? defaults to true
         onImageLoaded: function () {},          // callback function when an image is loaded into the cropper tool
         onImageCropped: function () {},         // callback function when an image is cropped and done
+        onImageCancel: function () {},          // callback function when a crop is canceled
         zoomInText: "+",                        // button text for Zoom-In button (HTML OK)
         zoomOutText: "-",                       // button text for Zoom-Out button (HTML OK)
         goText: "Save &amp; Crop",              // button text for Crop-and-Save button (HTML OK)
+        cancelText: "Cancel",                   // button text for Cancel button (HTML OK)
     }, options);
 
     // a reference to our own file input
@@ -34,6 +36,7 @@ jQuery.fn.ImageCropper = function(options) {
     var $btnIn   = $('<button class="imageCropperButtons-zoomIn"></button>').html(options.zoomInText).appendTo($buttons).click(zoomIn);
     var $btnCrop = $('<button class="imageCropperButtons-performCrop"></button>').html(options.goText).appendTo($buttons).click(performCrop);
     var $btnOut  = $('<button class="imageCropperButtons-zoomOut">-</button>').html(options.zoomOutText).appendTo($buttons).click(zoomOut);
+    var $btnCancel = $('<button class="imageCropperButtons-cancelCrop">Cancel</button>').html(options.cancelText).appendTo($buttons).click(cancelCrop);
 
     // create a new, blank Image element with a onload handler to trigger the refreshBackgroudn() when it receives content
     // this will in fact have its 'src' assigned in the file input's change-event handler
@@ -144,6 +147,19 @@ jQuery.fn.ImageCropper = function(options) {
         // fire the optional callback
         setTimeout(function () {
             options.onImageCropped(imageInProgress, $target_input, $fileinput);
+        },1);
+    };
+    function cancelCrop () {
+        // hide the UI
+        $wrapper.hide();
+        // clear and hide the thumbnail
+        $target_thumb.prop('src', 'about:blank').hide();
+        // clear both the file upload and the encoded thumbnail-base64
+        $target_input.val('');
+        $fileinput.val('');
+
+        setTimeout(function () {
+            options.onImageCancel(imageInProgress, $canvas, $fileinput);
         },1);
     };
 };
