@@ -61,6 +61,8 @@ onImageCropped: function (rawimg, $hiddeninput, $fileinput)
 
 So, how would one save this cropped image? It's just a blob of random letters. This is image data, encoded in base64, a format which can be parsed by Python, PHP, and other languages. The resulting image could be saved to a database as a string field, could be opened by GD or PIL to save it as a new file, or could be passed to a Django ImageField.
 
+*Don't forget the cardinal rule* of accepting input from users: they could be hackers or could be running malware. Always check that the image data parsed properly as image data and add relevant exception handlers, and never let them decide what filename you'll use for saving.
+
 ```
 # Django / Python
 # if you're not using Django, you could instead call cropdata.save()
