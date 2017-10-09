@@ -65,6 +65,9 @@ onImageCropped: function (rawimg, $hiddeninput, $fileinput)
 * **goText** -- Optional, text for the *Save and Crop* button.
   * Text and HTML are acceptable. Try FontAwesome or Glyphicons.
 
+* **cancelText** -- Optional, text for the *Cancel* button.
+  * Text and HTML are acceptable. Try FontAwesome or Glyphicons.
+
 
 # Handling the Base64-Encoded Image Content
 
