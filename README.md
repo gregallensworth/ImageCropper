@@ -56,6 +56,15 @@ onImageLoaded: function (rawimg, $cropcanvas, $fileinput)
 onImageCropped: function (rawimg, $hiddeninput, $fileinput)
 ```
 
+* **zoomInText** -- Optional, text for the *Zoom In* button.
+  * Text and HTML are acceptable. Try FontAwesome or Glyphicons.
+
+* **zoomOutText** -- Optional, text for the *Zoom Out* button.
+  * Text and HTML are acceptable. Try FontAwesome or Glyphicons.
+
+* **goText** -- Optional, text for the *Save and Crop* button.
+  * Text and HTML are acceptable. Try FontAwesome or Glyphicons.
+
 
 # Handling the Base64-Encoded Image Content
 
