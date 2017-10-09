@@ -13,25 +13,21 @@
 </head>
 <body>
 
-    Check out <a href="index.js" target="_blank">index.js</a> and you'll see the following:<br/>
-    <pre>
-    $('input[type="file"][name="image"]').ImageCropper({
-        width: 800,
-        height: 600,
-        thumbWidth: 200,
-        thumbHeight: 150,
-        onImageLoaded: function (rawimg, $cropcanvas, $fileinput) {
-            $('#bullets').hide();
-            $('#instructions').show();
-            $('#done').hide();
-        },
-        onImageCropped: function (rawimg, $hiddenfield, $fileinput) {
-            $('#bullets').hide();
-            $('#instructions').hide();
-            $('#done').show();
-        }
-    });
-    </pre>
+    <p>Check out <a href="index.js" target="_blank">index.js</a> for the code to start the ImageCropper.</p>
+
+    <div id="instructions" style="display:none; background-color:yellow;">
+        Crop your photo to 800 x 600 size.
+    </div>
+    <div id="done" style="display:none; background-color:yellow;">
+        Your image has been cropped, and <i>&lt;input type=&quot;hidden&quot; name=&quot;image&quot; /&gt;</i> is populated with the base64 content of the cropped image.
+        <br/>
+        If you don't believe me, open your debugger and check out the hidden input field.
+    </div>
+
+    <div>
+        File Input:<br/>
+        <input type="file" name="image" accept=".jpg,.jpeg,.png" /><br/>
+    </div>
 
     <ul id="bullets">
         <li>
@@ -52,20 +48,6 @@
             You may supply optional callback functions when an image is loaded, and when an image is cropped. Here, they are used to show instructions on the screen.
         </li>
     </ul>
-
-    <div id="instructions" style="display:none; background-color:yellow;">
-        Crop your photo to 800 x 600 size.
-    </div>
-    <div id="done" style="display:none; background-color:yellow;">
-        Your image has been cropped, and <i>&lt;input type=&quot;hidden&quot; name=&quot;image&quot; /&gt;</i> is populated with the base64 content of the cropped image.
-        <br/>
-        If you don't believe me, hit F12.
-    </div>
-
-    <div>
-        File Input:<br/>
-        <input type="file" name="image" accept=".jpg,.jpeg,.png" /><br/>
-    </div>
 
 </body>
 </html>
